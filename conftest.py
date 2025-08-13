@@ -1,4 +1,5 @@
 import os
+import time
 
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
@@ -11,14 +12,15 @@ def browser():
     chrome_options = Options()
 
     if os.getenv('CI'):
-        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--headless=new')
+        chrome_options.add_argument('--window-size=1920,1080')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
 
+
     driver = webdriver.Chrome(options=chrome_options)
 
-    if not os.getenv('CI'):
-        driver.maximize_window()
+    driver.set_window_size(1920, 1080)
 
     yield driver
     driver.quit()
