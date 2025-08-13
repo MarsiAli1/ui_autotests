@@ -1,0 +1,25 @@
+name: UI_TESTS
+
+on: [push, pull_request]
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Run tests
+        run: pytest --alluredir=./allure-results
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: allure-report
+          path: ./allure-results
