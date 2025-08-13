@@ -1,0 +1,29 @@
+.venv
+.idea
+# Кэш Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Артефакты тестов и отчёты
+allure-results/
+test-results/
+*.log
+*.html
+*.xml
+*.json
+
+# Конфигурационные файлы (если есть секреты)
+config/local.yaml
+config/secrets.ini
+
+# Selenium / Playwright бинарники (если не хранятся в репо)
+webdrivers/
+bin/
+geckodriver.log
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+allure-report/
